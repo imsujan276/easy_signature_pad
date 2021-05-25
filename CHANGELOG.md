@@ -1,3 +1,7 @@
-## [1.0.0] - 2021--5-30
+## [1.0.1] - 2021-5-26
+
+* Added output preview
+
+## [1.0.0] - 2021-5-25
 
 * Initial release of the signature pad.
