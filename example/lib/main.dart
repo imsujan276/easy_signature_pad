@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:signature_pad/signature_pad.dart';
+import 'package:flutter_signature_pad/signature_pad.dart';
 
 void main() {
   runApp(MyApp());

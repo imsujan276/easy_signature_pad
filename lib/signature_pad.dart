@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:signature_pad/utils/drawing_area.dart';
+import 'package:flutter_signature_pad/utils/drawing_area.dart';
 import 'dart:ui' as ui;
 
 class SignaturePad extends StatefulWidget {
