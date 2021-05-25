@@ -3,7 +3,7 @@
 Flutter Signature Pad is the flutter plugin that allows users to draw on the canvas and get the signature as Base64 image. 
 
 ## Preview
-![Preview](screenshots/output.gif)
+![Preview](https://github.com/imsujan276/easy_signature_pad/blob/main/screenshots/output.gif)
 
 ## Features
 * set canvas boundaries.
