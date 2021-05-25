@@ -19,23 +19,23 @@ import 'package:signature_pad/signature_pad.dart';
 Uint8List signatureBytes;
 
 // USe the SignaturePad Widget
-            SignaturePad(
-                onChnaged: (base64Image) {
-                  displaySIgnatureImage(image);
-                },
-                height: size.width ~/ 2,
-                width: size.width ~/ 1.5,
-              ),
+SignaturePad(
+    onChnaged: (base64Image) {
+      displaySIgnatureImage(image);
+    },
+    height: size.width ~/ 2,
+    width: size.width ~/ 1.5,
+),
 
 
 // process the base64 image 
-  void displaySIgnatureImage(String bytes) async {
+void displaySIgnatureImage(String bytes) async {
     if (bytes == null) return;
     Uint8List convertedBytes = base64Decode(bytes);
     setState(() {
       signatureBytes = convertedBytes;
     });
-  }
+}
 ```
 
 ## Contribution and support
