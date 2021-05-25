@@ -1,8 +1,7 @@
 name: signature_pad
 description: Provbies the signature area for the user to sign and returns the signature and Base64 image.
 version: 1.0.0
-author: Sujan Gainju <sujangainju01@gmail.com>
-homepage:
+homepage: https://github.com/imsujan276/signature_pad
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
