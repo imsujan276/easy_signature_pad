@@ -4,12 +4,13 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:ui';
 
+import 'package:easy_signature_pad/src/models/drawing_area.dart';
+import 'package:easy_signature_pad/src/utils/drawing_area.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_signature_pad/utils/drawing_area.dart';
 import 'dart:ui' as ui;
 
 class SignaturePad extends StatefulWidget {
-  final ValueChanged<String> onChnaged;
+  final ValueChanged<String> onChanged;
   final int height;
   final int width;
   final Color penColor;
@@ -18,8 +19,8 @@ class SignaturePad extends StatefulWidget {
   final bool enableShadow;
 
   SignaturePad({
-    Key key,
-    @required this.onChnaged,
+    Key? key,
+    required this.onChanged,
     this.height = 256,
     this.width = 400,
     this.penColor = Colors.black,
@@ -57,10 +58,10 @@ class _SignaturePadState extends State<SignaturePad> {
         paint2);
 
     for (int x = 0; x < points.length - 1; x++) {
-      if (points[x] != null && points[x + 1] != null) {
+      if (points[x].point.isFinite && points[x + 1].point.isFinite) {
         canvas.drawLine(
             points[x].point, points[x + 1].point, points[x].areaPaint);
-      } else if (points[x] != null && points[x + 1] == null) {
+      } else if (points[x].point.isFinite && !points[x + 1].point.isFinite) {
         canvas.drawPoints(
             PointMode.points, [points[x].point], points[x].areaPaint);
       }
@@ -76,7 +77,7 @@ class _SignaturePadState extends State<SignaturePad> {
       String b64Image = base64Encode(listBytes);
       return b64Image;
     }
-    return null;
+    return '';
   }
 
   @override
@@ -132,9 +133,11 @@ class _SignaturePadState extends State<SignaturePad> {
             },
             onPanEnd: (details) async {
               this.setState(() {
-                points.add(null);
+                points.add(DrawingArea(
+                    point: Offset(double.infinity, double.infinity),
+                    areaPaint: Paint()));
               });
-              widget.onChnaged(await saveToImage(points));
+              widget.onChanged(await saveToImage(points));
             },
             child: Stack(
               children: [
@@ -155,7 +158,7 @@ class _SignaturePadState extends State<SignaturePad> {
                       setState(() {
                         points.clear();
                       });
-                      widget.onChnaged(await saveToImage(points));
+                      widget.onChanged(await saveToImage(points));
                     },
                     child: Container(
                       height: 50,

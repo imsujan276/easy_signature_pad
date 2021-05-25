@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Signature Pad Example',
+      title: 'Easy Signature Pad Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -32,8 +32,8 @@ class SignaturePadExample extends StatefulWidget {
 class _SignaturePadExampleState extends State<SignaturePadExample> {
   Uint8List signatureBytes;
 
-  void displaySIgnatureImage(String bytes) async {
-    if (bytes == null) return;
+  void setImage(String bytes) async {
+    if (bytes == null || bytes.isEmpty) return;
     Uint8List convertedBytes = base64Decode(bytes);
     setState(() {
       signatureBytes = convertedBytes;
@@ -75,11 +75,15 @@ class _SignaturePadExampleState extends State<SignaturePadExample> {
                 ),
               Divider(),
               SignaturePad(
-                onChnaged: (image) {
-                  displaySIgnatureImage(image);
+                onChanged: (image) {
+                  setImage(image);
                 },
                 height: size.width ~/ 2,
                 width: size.width ~/ 1.5,
+                penColor: Colors.black,
+                strokeWidth: 1.0,
+                borderRadius: 10.0,
+                enableShadow: false,
               ),
             ],
           ),

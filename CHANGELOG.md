@@ -1,3 +1,7 @@
+## [1.0.2] - 2021-5-26
+
+* Added Null Safety
+
 ## [1.0.1] - 2021-5-26
 
 * Added output preview

@@ -20,17 +20,21 @@ Uint8List signatureBytes;
 
 // USe the SignaturePad Widget
 SignaturePad(
-    onChnaged: (base64Image) {
-      displaySIgnatureImage(image);
+    onChanged: (base64Image) {
+      setImage(image);
     },
     height: size.width ~/ 2,
     width: size.width ~/ 1.5,
+    penColor: Colors.black,
+    strokeWidth: 1.0,
+    borderRadius: 10.0,
+    enableShadow: false,
 ),
 
 
 // process the base64 image 
-void displaySIgnatureImage(String bytes) async {
-    if (bytes == null) return;
+void setImage(String bytes) async {
+    if (bytes == null || bytes.isEmpty) return;
     Uint8List convertedBytes = base64Decode(bytes);
     setState(() {
       signatureBytes = convertedBytes;

@@ -1,18 +1,12 @@
 import 'dart:ui';
 
+import 'package:easy_signature_pad/src/models/drawing_area.dart';
 import 'package:flutter/material.dart';
-
-class DrawingArea {
-  Offset point;
-  Paint areaPaint;
-
-  DrawingArea({@required this.point, @required this.areaPaint});
-}
 
 class MyCustomPainter extends CustomPainter {
   List<DrawingArea> points;
 
-  MyCustomPainter({@required List<DrawingArea> points})
+  MyCustomPainter({required List<DrawingArea> points})
       : this.points = points.toList();
 
   @override
@@ -22,10 +16,10 @@ class MyCustomPainter extends CustomPainter {
     canvas.drawRect(rect, background);
     canvas.clipRect(rect);
     for (int x = 0; x < points.length - 1; x++) {
-      if (points[x] != null && points[x + 1] != null) {
+      if (points[x].point.isFinite && points[x + 1].point.isFinite) {
         canvas.drawLine(
             points[x].point, points[x + 1].point, points[x].areaPaint);
-      } else if (points[x] != null && points[x + 1] == null) {
+      } else if (points[x].point.isFinite && !points[x + 1].point.isFinite) {
         canvas.drawPoints(
             PointMode.points, [points[x].point], points[x].areaPaint);
       }
