@@ -1,14 +1,43 @@
-# signature_pad
+# Signature Pad
 
-A new Flutter package project.
+The signature pad is the flutter plugin that allows users to draw on the canvas and get the signature as Base64 image. 
 
-## Getting Started
+## Preview
+![Preview](screenshots/output.gif)
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Features
+* set canvas boundaries.
+* set drawing pen color, pen size, canvas border radius.
+* set callback function to the signature
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+
+## Example 
+```
+import 'package:signature_pad/signature_pad.dart';
+
+// initialise the variable to store signature image
+Uint8List signatureBytes;
+
+// USe the SignaturePad Widget
+            SignaturePad(
+                onChnaged: (base64Image) {
+                  displaySIgnatureImage(image);
+                },
+                height: size.width ~/ 2,
+                width: size.width ~/ 1.5,
+              ),
+
+
+// process the base64 image 
+  void displaySIgnatureImage(String bytes) async {
+    if (bytes == null) return;
+    Uint8List convertedBytes = base64Decode(bytes);
+    setState(() {
+      signatureBytes = convertedBytes;
+    });
+  }
+```
+
+## Contribution and support
+- If you want to contribute to the code, please create a pull request. 
+- If you find any bug, please create an issue.
