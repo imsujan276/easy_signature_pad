@@ -1,7 +1,7 @@
-name: flutter_signature_pad
+name: easy_signature_pad
 description: Provbies the signature area for the user to sign and returns the signature and Base64 image.
 version: 1.0.0
-homepage: https://github.com/imsujan276/flutter_signature_pad
+homepage: https://github.com/imsujan276/easy_signature_pad
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

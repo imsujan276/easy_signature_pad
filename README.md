@@ -13,7 +13,7 @@ Flutter Signature Pad is the flutter plugin that allows users to draw on the can
 
 ## Example 
 ```
-import 'package:flutter_signature_pad/signature_pad.dart';
+import 'package:easy_signature_pad/signature_pad.dart';
 
 // initialise the variable to store signature image
 Uint8List signatureBytes;
