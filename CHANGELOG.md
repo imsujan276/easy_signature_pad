@@ -1,3 +1,7 @@
+## [1.0.4] - 2021-5-27
+
+* Updated package entry name for easy import
+
 ## [1.0.3] - 2021-5-27
 
 * Added documentation
