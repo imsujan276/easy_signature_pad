@@ -15,6 +15,8 @@ class MyCustomPainter extends CustomPainter {
     Rect rect = Rect.fromLTWH(0, 0, size.width, size.height);
     canvas.drawRect(rect, background);
     canvas.clipRect(rect);
+
+    /// an algorithm to draw the points in the canvas
     for (int x = 0; x < points.length - 1; x++) {
       if (points[x].point.isFinite && points[x + 1].point.isFinite) {
         canvas.drawLine(

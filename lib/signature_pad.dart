@@ -10,12 +10,25 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 class SignaturePad extends StatefulWidget {
+  /// callback function to be called on each drawing end
   final ValueChanged<String> onChanged;
+
+  /// height of the canvas. Default = 256
   final int height;
+
+  /// width of the canvas. Default = 400
   final int width;
+
+  /// drawing pen/stroke color. Default = Colors.black
   final Color penColor;
+
+  /// Pen/stroke width. Default = 2.0
   final double strokeWidth;
+
+  /// canvas container border radius. Default = 10
   final double borderRadius;
+
+  /// toggle to show the shadow to the canvas container. Default = false
   final bool enableShadow;
 
   SignaturePad({
@@ -34,9 +47,12 @@ class SignaturePad extends StatefulWidget {
 }
 
 class _SignaturePadState extends State<SignaturePad> {
+  /// initialization of drawing points
   final List<DrawingArea> points = [];
 
+  /// convert the points to base64 image. If no points (canvas is cleared), return null
   Future<String> saveToImage(List<DrawingArea> points) async {
+    if (points.length < 1) return '';
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(
         recorder,
@@ -57,6 +73,7 @@ class _SignaturePadState extends State<SignaturePad> {
         Rect.fromLTWH(0, 0, widget.width.toDouble(), widget.height.toDouble()),
         paint2);
 
+    /// an algorithm to draw the points in the canvas
     for (int x = 0; x < points.length - 1; x++) {
       if (points[x].point.isFinite && points[x + 1].point.isFinite) {
         canvas.drawLine(
@@ -70,7 +87,7 @@ class _SignaturePadState extends State<SignaturePad> {
     final picture = recorder.endRecording();
     final img = await picture.toImage(widget.width, widget.height);
 
-    //converting to png
+    /// converting to png
     final pngBytes = await img.toByteData(format: ui.ImageByteFormat.png);
     if (pngBytes != null) {
       final listBytes = Uint8List.view(pngBytes.buffer);

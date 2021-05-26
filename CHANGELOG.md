@@ -1,3 +1,7 @@
+## [1.0.3] - 2021-5-27
+
+* Added documentation
+
 ## [1.0.2] - 2021-5-26
 
 * Added Null Safety

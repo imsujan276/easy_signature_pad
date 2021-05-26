@@ -34,12 +34,17 @@ SignaturePad(
 
 // process the base64 image 
 void setImage(String bytes) async {
-    if (bytes == null || bytes.isEmpty) return;
-    Uint8List convertedBytes = base64Decode(bytes);
-    setState(() {
-      signatureBytes = convertedBytes;
-    });
-}
+    if (bytes.isNotEmpty) {
+      Uint8List convertedBytes = base64Decode(bytes);
+      setState(() {
+        signatureBytes = convertedBytes;
+      });
+    } else {
+      setState(() {
+        signatureBytes = null;
+      });
+    }
+  }
 ```
 
 ## Contribution and support

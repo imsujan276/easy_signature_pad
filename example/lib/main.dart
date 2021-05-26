@@ -33,11 +33,16 @@ class _SignaturePadExampleState extends State<SignaturePadExample> {
   Uint8List signatureBytes;
 
   void setImage(String bytes) async {
-    if (bytes == null || bytes.isEmpty) return;
-    Uint8List convertedBytes = base64Decode(bytes);
-    setState(() {
-      signatureBytes = convertedBytes;
-    });
+    if (bytes.isNotEmpty) {
+      Uint8List convertedBytes = base64Decode(bytes);
+      setState(() {
+        signatureBytes = convertedBytes;
+      });
+    } else {
+      setState(() {
+        signatureBytes = null;
+      });
+    }
   }
 
   @override
@@ -45,7 +50,7 @@ class _SignaturePadExampleState extends State<SignaturePadExample> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Signature Pad Example"),
+        title: Text("Easy Signature Pad Example"),
       ),
       body: SafeArea(
         child: Container(
