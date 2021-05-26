@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:easy_signature_pad/signature_pad.dart';
+import 'package:easy_signature_pad/easy_signature_pad.dart';
 
 void main() {
   runApp(MyApp());
@@ -79,7 +79,7 @@ class _SignaturePadExampleState extends State<SignaturePadExample> {
                   ],
                 ),
               Divider(),
-              SignaturePad(
+              EasySignaturePad(
                 onChanged: (image) {
                   setImage(image);
                 },

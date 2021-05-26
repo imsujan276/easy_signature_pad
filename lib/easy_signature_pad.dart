@@ -9,7 +9,7 @@ import 'package:easy_signature_pad/src/utils/drawing_area.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-class SignaturePad extends StatefulWidget {
+class EasySignaturePad extends StatefulWidget {
   /// callback function to be called on each drawing end
   final ValueChanged<String> onChanged;
 
@@ -31,7 +31,7 @@ class SignaturePad extends StatefulWidget {
   /// toggle to show the shadow to the canvas container. Default = false
   final bool enableShadow;
 
-  SignaturePad({
+  EasySignaturePad({
     Key? key,
     required this.onChanged,
     this.height = 256,
@@ -43,10 +43,10 @@ class SignaturePad extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SignaturePadState createState() => _SignaturePadState();
+  _EasySignaturePadState createState() => _EasySignaturePadState();
 }
 
-class _SignaturePadState extends State<SignaturePad> {
+class _EasySignaturePadState extends State<EasySignaturePad> {
   /// initialization of drawing points
   final List<DrawingArea> points = [];
 
