@@ -4,14 +4,27 @@ import 'package:easy_signature_pad/src/models/drawing_area.dart';
 import 'package:flutter/material.dart';
 
 class MyCustomPainter extends CustomPainter {
+  /// list of points drawn
   List<DrawingArea> points;
 
-  MyCustomPainter({required List<DrawingArea> points})
-      : this.points = points.toList();
+  /// creates the transaparent image. Default = false
+  bool transparent;
+
+  /// canvas background color
+  Color backgroundColor;
+
+  MyCustomPainter(
+      {required List<DrawingArea> points,
+      required bool transparent,
+      required Color backgroundColor})
+      : this.points = points.toList(),
+        this.transparent = transparent,
+        this.backgroundColor = backgroundColor;
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint background = Paint()..color = Colors.white;
+    Paint background = Paint()
+      ..color = transparent ? Colors.transparent : backgroundColor;
     Rect rect = Rect.fromLTWH(0, 0, size.width, size.height);
     canvas.drawRect(rect, background);
     canvas.clipRect(rect);

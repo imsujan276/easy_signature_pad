@@ -28,8 +28,17 @@ class EasySignaturePad extends StatefulWidget {
   /// canvas container border radius. Default = 10
   final double borderRadius;
 
-  /// toggle to show the shadow to the canvas container. Default = false
-  final bool enableShadow;
+  /// border color. Default = Colors.white
+  final Color borderColor;
+
+  /// signarure pad and image background color. Default = Colors.white
+  final Color backgroundColor;
+
+  /// creates the transaparent signature pad. Default = false
+  final bool transparentSignaturePad;
+
+  /// creates the transaparent image. Default = false
+  final bool transparentImage;
 
   EasySignaturePad({
     Key? key,
@@ -38,8 +47,11 @@ class EasySignaturePad extends StatefulWidget {
     this.width = 400,
     this.penColor = Colors.black,
     this.strokeWidth = 2.0,
-    this.borderRadius = 10,
-    this.enableShadow = false,
+    this.borderRadius = 5,
+    this.borderColor = Colors.white,
+    this.backgroundColor = Colors.white,
+    this.transparentSignaturePad = false,
+    this.transparentImage = false,
   }) : super(key: key);
 
   @override
@@ -67,7 +79,8 @@ class _EasySignaturePadState extends State<EasySignaturePad> {
     //background
     final paint2 = paint
       ..style = PaintingStyle.fill
-      ..color = Colors.white;
+      ..color =
+          widget.transparentImage ? Colors.transparent : widget.backgroundColor;
 
     canvas.drawRect(
         Rect.fromLTWH(0, 0, widget.width.toDouble(), widget.height.toDouble()),
@@ -106,18 +119,10 @@ class _EasySignaturePadState extends State<EasySignaturePad> {
           width: widget.width.toDouble(),
           height: widget.height.toDouble(),
           decoration: BoxDecoration(
+            border: Border.all(color: widget.borderColor),
             borderRadius: BorderRadius.all(
               Radius.circular(widget.borderRadius),
             ),
-            boxShadow: widget.enableShadow
-                ? [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
-                      blurRadius: 5.0,
-                      spreadRadius: 1,
-                    ),
-                  ]
-                : null,
           ),
           child: GestureDetector(
             onPanDown: (details) {
@@ -164,7 +169,11 @@ class _EasySignaturePadState extends State<EasySignaturePad> {
                       Radius.circular(widget.borderRadius),
                     ),
                     child: CustomPaint(
-                      painter: MyCustomPainter(points: points),
+                      painter: MyCustomPainter(
+                        points: points,
+                        transparent: widget.transparentSignaturePad,
+                        backgroundColor: widget.backgroundColor,
+                      ),
                     ),
                   ),
                 ),

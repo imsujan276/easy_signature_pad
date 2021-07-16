@@ -18,17 +18,20 @@ import 'package:easy_signature_pad/easy_signature_pad.dart';
 // initialise the variable to store signature image
 Uint8List signatureBytes;
 
-// USe the SignaturePad Widget
+// Use the SignaturePad Widget
 EasySignaturePad(
-    onChanged: (base64Image) {
-      setImage(image);
-    },
-    height: size.width ~/ 2,
-    width: size.width ~/ 1.5,
-    penColor: Colors.black,
-    strokeWidth: 1.0,
-    borderRadius: 10.0,
-    enableShadow: false,
+  onChanged: (image) {
+    setImage(image);
+  },
+  height: size.width ~/ 2,
+  width: size.width ~/ 1.5,
+  penColor: Colors.black,
+  strokeWidth: 1.0,
+  borderRadius: 10.0,
+  borderColor: Colors.white,
+  backgroundColor: Colors.white,
+  transparentImage: false,
+  transparentSignaturePad: false,
 ),
 
 
