@@ -18,7 +18,7 @@ class EasySignaturePad extends StatefulWidget {
 
   /// width of the canvas. Default = 400
   final int width;
-  /// Test
+
   /// drawing pen/stroke color. Default = Colors.black
   final Color penColor;
 
