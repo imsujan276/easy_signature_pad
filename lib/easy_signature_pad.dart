@@ -28,7 +28,6 @@ class EasySignaturePad extends StatefulWidget {
   /// canvas container border radius. Default = 10
   final double borderRadius;
 
-  /// Test
   /// border color. Default = Colors.white
   final Color borderColor;
 
