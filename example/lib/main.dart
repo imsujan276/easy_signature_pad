@@ -92,6 +92,7 @@ class _SignaturePadExampleState extends State<SignaturePadExample> {
                 backgroundColor: Colors.white,
                 transparentImage: false,
                 transparentSignaturePad: false,
+                hideClearSignatureIcon: false,
               ),
             ],
           ),

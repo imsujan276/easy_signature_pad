@@ -1,6 +1,6 @@
 name: easy_signature_pad
 description: Provides the signature area for the user to sign and returns the signature and Base64 image.
-version: 1.0.5
+version: 1.0.6
 homepage: https://github.com/imsujan276/easy_signature_pad
 
 environment:

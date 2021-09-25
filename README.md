@@ -32,6 +32,7 @@ EasySignaturePad(
   backgroundColor: Colors.white,
   transparentImage: false,
   transparentSignaturePad: false,
+  hideClearSignatureIcon: false,
 ),
 
 

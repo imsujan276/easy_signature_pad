@@ -1,3 +1,7 @@
+## [1.0.6] - 2021-9-125
+
+* Option to hide the clear signature button on the signature pad
+
 ## [1.0.5] - 2021-7-16
 
 * added custom background color, transparency in the signature pad and the generated image
