@@ -40,6 +40,9 @@ class EasySignaturePad extends StatefulWidget {
   /// creates the transaparent image. Default = false
   final bool transparentImage;
 
+  /// Hide the clear signature icon cross
+  final bool hideClearSignatureIcon;
+
   EasySignaturePad({
     Key? key,
     required this.onChanged,
@@ -52,6 +55,7 @@ class EasySignaturePad extends StatefulWidget {
     this.backgroundColor = Colors.white,
     this.transparentSignaturePad = false,
     this.transparentImage = false,
+    this.hideClearSignatureIcon = false,
   }) : super(key: key);
 
   @override
@@ -80,7 +84,7 @@ class _EasySignaturePadState extends State<EasySignaturePad> {
     final paint2 = paint
       ..style = PaintingStyle.fill
       ..color =
-          widget.transparentImage ? Colors.transparent : widget.backgroundColor;
+      widget.transparentImage ? Colors.transparent : widget.backgroundColor;
 
     canvas.drawRect(
         Rect.fromLTWH(0, 0, widget.width.toDouble(), widget.height.toDouble()),
@@ -177,6 +181,7 @@ class _EasySignaturePadState extends State<EasySignaturePad> {
                     ),
                   ),
                 ),
+                widget.hideClearSignatureIcon ? SizedBox.shrink() :
                 Align(
                   alignment: Alignment.topRight,
                   child: InkWell(
