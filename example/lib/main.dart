@@ -23,14 +23,14 @@ class MyApp extends StatelessWidget {
 }
 
 class SignaturePadExample extends StatefulWidget {
-  SignaturePadExample({Key key}) : super(key: key);
+  SignaturePadExample({Key? key}) : super(key: key);
 
   @override
   _SignaturePadExampleState createState() => _SignaturePadExampleState();
 }
 
 class _SignaturePadExampleState extends State<SignaturePadExample> {
-  Uint8List signatureBytes;
+  Uint8List? signatureBytes;
 
   void setImage(String bytes) async {
     if (bytes.isNotEmpty) {
@@ -70,7 +70,7 @@ class _SignaturePadExampleState extends State<SignaturePadExample> {
                       height: size.width / 2,
                       width: size.width / 1.5,
                       child: Image.memory(
-                        signatureBytes,
+                        signatureBytes!,
                         fit: BoxFit.cover,
                       ),
                     ),
