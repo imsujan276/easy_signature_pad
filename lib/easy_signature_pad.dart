@@ -13,6 +13,9 @@ class EasySignaturePad extends StatefulWidget {
   /// callback function to be called on each drawing end
   final ValueChanged<String> onChanged;
 
+  /// callback function to be called when clearing the canvas
+  final VoidCallback? onClear;
+
   /// height of the canvas. Default = 256
   final int height;
 
@@ -43,9 +46,16 @@ class EasySignaturePad extends StatefulWidget {
   /// Hide the clear signature icon cross
   final bool hideClearSignatureIcon;
 
+  /// change clear signature icon
+  final Widget? clearSignatureIcon;
+
+  /// Change clear icon alignement
+  final AlignmentGeometry clearSignatureIconAlignment;
+
   EasySignaturePad({
     Key? key,
     required this.onChanged,
+    this.onClear,
     this.height = 256,
     this.width = 400,
     this.penColor = Colors.black,
@@ -56,6 +66,8 @@ class EasySignaturePad extends StatefulWidget {
     this.transparentSignaturePad = false,
     this.transparentImage = false,
     this.hideClearSignatureIcon = false,
+    this.clearSignatureIcon,
+    this.clearSignatureIconAlignment = Alignment.topRight,
   }) : super(key: key);
 
   @override
@@ -84,7 +96,7 @@ class _EasySignaturePadState extends State<EasySignaturePad> {
     final paint2 = paint
       ..style = PaintingStyle.fill
       ..color =
-      widget.transparentImage ? Colors.transparent : widget.backgroundColor;
+          widget.transparentImage ? Colors.transparent : widget.backgroundColor;
 
     canvas.drawRect(
         Rect.fromLTWH(0, 0, widget.width.toDouble(), widget.height.toDouble()),
@@ -181,28 +193,33 @@ class _EasySignaturePadState extends State<EasySignaturePad> {
                     ),
                   ),
                 ),
-                widget.hideClearSignatureIcon ? SizedBox.shrink() :
-                Align(
-                  alignment: Alignment.topRight,
-                  child: InkWell(
-                    onTap: () async {
-                      setState(() {
-                        points.clear();
-                      });
-                      widget.onChanged(await saveToImage(points));
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(widget.borderRadius),
+                widget.hideClearSignatureIcon
+                    ? SizedBox.shrink()
+                    : Align(
+                        alignment: widget.clearSignatureIconAlignment,
+                        child: InkWell(
+                          onTap: () async {
+                            setState(() {
+                              points.clear();
+                            });
+                            widget.onChanged(await saveToImage(points));
+                            if (widget.onClear != null) {
+                              widget.onClear!();
+                            }
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(widget.borderRadius),
+                              ),
+                            ),
+                            child:
+                                widget.clearSignatureIcon ?? Icon(Icons.clear),
+                          ),
                         ),
                       ),
-                      child: Icon(Icons.clear),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
