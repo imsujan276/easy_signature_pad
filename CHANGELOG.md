@@ -1,4 +1,8 @@
-## [1.0.6] - 2021-9-125
+## [1.0.7] - 2024-7-25
+
+* Option to change Icon and Alignment of the clear icon
+
+## [1.0.6] - 2021-9-25
 
 * Option to hide the clear signature button on the signature pad
 

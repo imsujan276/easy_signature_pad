@@ -11,6 +11,8 @@ import 'dart:ui' as ui;
 
 class EasySignaturePad extends StatefulWidget {
   /// callback function to be called on each drawing end
+  ///
+  /// returns the base64 string image of the drawing
   final ValueChanged<String> onChanged;
 
   /// callback function to be called when clearing the canvas
@@ -78,7 +80,7 @@ class _EasySignaturePadState extends State<EasySignaturePad> {
   /// initialization of drawing points
   final List<DrawingArea> points = [];
 
-  /// convert the points to base64 image. If no points (canvas is cleared), return null
+  /// convert the points to base64 image. If no points (canvas is cleared), return empty string
   Future<String> saveToImage(List<DrawingArea> points) async {
     if (points.length < 1) return '';
     final recorder = ui.PictureRecorder();
@@ -207,14 +209,9 @@ class _EasySignaturePadState extends State<EasySignaturePad> {
                               widget.onClear!();
                             }
                           },
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(widget.borderRadius),
-                              ),
-                            ),
+                          child: SizedBox(
+                            height: 35,
+                            width: 35,
                             child:
                                 widget.clearSignatureIcon ?? Icon(Icons.clear),
                           ),

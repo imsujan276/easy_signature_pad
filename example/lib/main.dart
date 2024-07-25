@@ -93,6 +93,8 @@ class _SignaturePadExampleState extends State<SignaturePadExample> {
                 transparentImage: false,
                 transparentSignaturePad: false,
                 hideClearSignatureIcon: false,
+                clearSignatureIcon: Icon(Icons.delete),
+                clearSignatureIconAlignment: Alignment.bottomRight,
               ),
             ],
           ),
